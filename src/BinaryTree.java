@@ -7,6 +7,9 @@
         • Each node (item in the tree) has a distinct key.  */
 
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
     Node root;
     boolean isBST()  {
@@ -33,6 +36,21 @@ public class BinaryTree {
                 isBSTUtil(node.right, node.data+1, max));
     }
 
+    public static void levelOrder(Node root) {
+        Queue<Node> q = new LinkedList<Node>();
+        q.add(root);
+
+        while(!q.isEmpty()){
+            Node tempNode=q.poll();
+            System.out.print(tempNode.data+" ");
+            if(tempNode.left!=null)
+                q.add(tempNode.left);
+            if(tempNode.right!=null)
+                q.add(tempNode.right);
+        }
+
+    }
+
     public static void main(String args[])
     {
         BinaryTree tree = new BinaryTree();
@@ -46,6 +64,8 @@ public class BinaryTree {
             System.out.println("IS BST");
         else
             System.out.println("Not a BST");
+
+        levelOrder(tree.root);
     }
 }
 

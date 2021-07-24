@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.*;
 
 public class SortingAlghoritms {
     public static void main (String args[]){
@@ -40,6 +37,17 @@ public class SortingAlghoritms {
         if(b[0] > a[1]){
             System.out.println(true);
         }
+
+        String s = "|***|**|";
+        List<Integer> arrr1 = new ArrayList<>();
+        arrr1.add(1);
+        arrr1.add(1);
+
+        List<Integer> arrr2 = new ArrayList<>();
+        arrr2.add(1);
+        arrr2.add(5);
+        numberOfItems(s,arrr1,arrr2);
+
         }
 
     public static void solution2(int N) {
@@ -151,6 +159,46 @@ public class SortingAlghoritms {
 
         return n + 1;
     }
+
+    public static long howManySwaps(List<Integer> arr) {
+        long swap = 0;
+        for(int i=0; i< arr.size(); i++) {
+            if(arr.get(i) > arr.get(i+1)){
+                int temp = arr.get(i);
+                arr.set(i, arr.get(i+1));
+                arr.set(i+1, temp);
+                swap++;
+            }
+        }
+        return swap;
+    }
+
+
+    public static List<Integer> numberOfItems(String s, List<Integer> startIndices, List<Integer> endIndices) {
+        int[] arr = new int[s.length()];
+        int count = 0;
+        for(int i =0 ; i < s.length(); ++i){
+            if(s.charAt(i) == '|'){
+                arr[i] = count;
+            }else{
+                count++;
+            }
+        }
+
+        List<Integer> arrayList =  new ArrayList<>();
+        for(int i = 0; i<startIndices.size(); i++){
+            int start = startIndices.get(i) - 1;
+            int end = endIndices.get(i) - 1;
+
+            while(start < end && s.charAt(start) != '|')++start;
+            while(start < end && s.charAt(end) != '|')--end;
+
+            arrayList.add(arr[end] - arr[start]);
+        }
+        return arrayList;
+
+    }
+
 
 
 
