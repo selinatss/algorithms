@@ -24,8 +24,81 @@ N is an integer within the range [1..2,147,483,647].
 */
 public class BinaryGap {
     public static void main(String args []){
+      String value = "red";
+
+      String A = "23A84Q";
+      String B  = "K2Q25J";
+
+        solution(A, B);
+        int[] intArray = new int[] {4, -1, 0, 3};
+        int[] intArray2 = new int[] {-2, 6, 0, 4};
+
+        solution2(intArray, intArray2);
 
      }
+
+    public static int solution(String A, String B) {
+        int result = 0;
+        char[] aCards = A.toCharArray();
+        char[] bCards = B.toCharArray();
+
+        ArrayList<Integer> aCardList = arrangeCards(aCards);
+        ArrayList<Integer> bCardList = arrangeCards(bCards);
+
+        for(int i=0; i<aCardList.size(); i++){
+            if(aCardList.get(i) > bCardList.get(i))
+                result++;
+        }
+
+
+
+        return result;
+    }
+
+    private static ArrayList<Integer> arrangeCards(char[] cards) {
+        ArrayList<Integer> cardList = new ArrayList<>();
+        for(int i = 0; i< cards.length; i++){
+            if(cards[i] == 'A')
+                cardList.add(14);
+            else if(cards[i] == 'K')
+                cardList.add(13);
+            else if(cards[i] == 'Q')
+                cardList.add(12);
+            else if(cards[i] == 'J')
+                cardList.add(11);
+            else if(cards[i] == 'T')
+                cardList.add(10);
+            else
+                cardList.add(Character.getNumericValue(cards[i]));
+        }
+
+        return cardList;
+    }
+
+    public static int solution2 (int[] A, int[] B) {
+        int result = 0;
+        if(sumOfArray(A) == sumOfArray(B)){
+            return result;
+        }
+        for (int i = 0; i< A.length; i++){
+            A[i] = 0;
+            B[i] = 0;
+            if(sumOfArray(A) == sumOfArray(B)){
+                result = i;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public static int sumOfArray(int[] array){
+        int result = 0;
+        for(int i = 0; i< array.length; i++){
+            result += array[i];
+        }
+        return result;
+    }
 
     public int solution(int N) {
         String binaryString = Integer.toBinaryString(N);

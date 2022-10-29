@@ -27,13 +27,16 @@ public class GetRecursiveLetter {
             }
         }
 
-        Iterator<Map.Entry<Character, Integer>> iterator = count.entrySet().iterator();
+        /*Iterator<Map.Entry<Character, Integer>> iterator = count.entrySet().iterator();
         while (iterator.hasNext()){
             Map.Entry<Character, Integer> entry = iterator.next();
             if(entry.getValue() > 1){
                 System.out.println(entry.getKey().toString());
             }
-        }
+        }*/
+       count.entrySet().stream().filter(e -> e.getValue()>1).forEach(
+                System.out::println
+        );
 
     }
 

@@ -1,13 +1,11 @@
 public class CountingValleys {
 
     public static void main(String[] args){
-        int step = 8;
         String path = "DDUUDDDU";
-
-        countingValleys(step, path);
+        countingValleys(path);
     }
 
-    public static int countingValleys(int steps, String path) {
+    public static int countingValleys(String path) {
         char[] pathArray = path.toCharArray();
 
         int level = 0;
